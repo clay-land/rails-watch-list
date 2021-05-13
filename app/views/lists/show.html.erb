@@ -1,0 +1,8 @@
+<h1><%= @list.name %></h1>
+<% @list.movies.each do |movie| %>
+  <h3><%= movie.title %></h3>
+  <h4>Overview</h4>
+  <p><%= movie.overview %></p>
+  <h4>Rating: <%= movie.rating %>/10</h4>
+  <%= link_to "Delete", bookmark_path, method: :delete, data: { confirm: "Sure?" }%>
+<% end %>
