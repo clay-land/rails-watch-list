@@ -1,11 +1,21 @@
-<h1><%= @list.name %></h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1562329265-95a6d7a83440?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1928&q=80);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+    <p>Keep adding to your list!</p>
+    <a class="btn btn-primary" href="<%= new_list_bookmark_path(@list) %>">Bookmark a Movie!</a>
+  </div>
+</div>
 <div class="container d-flex">
   <% @list.movies.each do |movie| %>
     <% bookmark = Bookmark.find_by(list: @list) %>
-    <h3><%= movie.title %></h3>
-    <h4>Overview</h4>
-    <p><%= movie.overview %></p>
-    <h4>Rating: <%= movie.rating %>/10</h4>
-    <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Sure?" }%>
+    <div class="card border-0" style="width: 18rem;">
+      <img src="<%= movie.poster_url%>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= movie.title %></h5>
+        <p class="card-text"><%= movie.overview %></p>
+        <p class="card-text">Rating: <%= movie.rating %>/10</p>
+        <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Sure?" }, class: "btn btn-success"%>
+      </div>
+    </div>
   <% end %>
 </div>
