@@ -7,12 +7,12 @@
 </div>
 <div class="container d-flex flex-wrap">
   <% @list.movies.each do |movie| %>
-    <% bookmark = Bookmark.find_by(list: @list) %>
+    <% bookmark = Bookmark.find_by(movie: movie) %>
     <div class="card m-3 border-0" style="width: 18rem;">
-      <img src="<%= cl_image_path bookmark.photo.key, height: 300, crop: :fill %>" class="card-img-top" alt="...">
+      <img src="<%= cl_image_path bookmark.photo.key, height: 600, crop: :fill %>" class="card-img-top bookmark-img" alt="...">
       <div class="card-body d-flex flex-column">
         <h5 class="card-title"><%= movie.title %></h5>
-        <p class="card-text"><%= movie.overview %></p>
+        <p class="card-text flex-grow-1"><%= movie.overview %></p>
         <p class="card-text">Rating: <%= movie.rating %>/10</p>
         <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Sure?" }, class: "btn btn-success"%>
       </div>
